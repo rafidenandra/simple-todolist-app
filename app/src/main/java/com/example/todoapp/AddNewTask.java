@@ -20,7 +20,7 @@ import com.example.todoapp.Utils.DataBaseHelper;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 public class AddNewTask extends BottomSheetDialogFragment {
-    private static final String TAG = "AddNewTask";
+    public static final String TAG = "AddNewTask";
 
     private EditText mEditText;
     private Button mSaveButton;
