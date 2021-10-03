@@ -1,6 +1,7 @@
 package com.example.todoapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -44,12 +45,12 @@ public class MainActivity extends AppCompatActivity implements OnDialogCloseList
         Collections.reverse(mList);
         adapter.setTasks(mList);
 
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        fab.setOnClickListener((v) -> {
                 AddNewTask.newInstance().show(getSupportFragmentManager(), AddNewTask.TAG);
-            }
         });
+
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new RecyclerViewTouchHelper(adapter));
+        itemTouchHelper.attachToRecyclerView(mRecyclerView);
     }
 
     @Override
