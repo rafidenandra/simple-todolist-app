@@ -8,6 +8,9 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 
+import com.example.todoapp.Register.RegisterActivity;
+
+
 public class LoginActivity extends AppCompatActivity {
     private EditText mViewUser;
     private EditText mViewPassword;

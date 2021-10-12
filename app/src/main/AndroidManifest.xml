@@ -10,11 +10,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TodoApp">
         <activity
+            android:name=".Register.RegisterActivity"
+            android:exported="true" />
+        <activity
             android:name=".Login.LoginActivity"
             android:exported="true" />
         <activity
             android:name=".SplashActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
