@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,11 +10,22 @@
     android:orientation="vertical"
     tools:context=".Login.LoginActivity">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/Login"
+        android:textSize="28sp"
+        android:textColor="@color/colorBlack2"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_marginBottom="56dp"/>
+
     <EditText
         android:id="@+id/et_emailSignin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Username"
+        android:layout_marginBottom="16dp"
+        android:hint="@string/Username"
         android:inputType="textEmailAddress"
         android:maxLines="1"
         android:singleLine="true"
@@ -23,14 +35,14 @@
         android:id="@+id/et_passwordSignin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="30dp"
-        android:hint="Password"
+        android:layout_marginBottom="32dp"
+        android:hint="@string/Password"
         android:inputType="textPassword"
         android:maxLines="1"
         android:singleLine="true"
         android:imeActionId="6"
         android:imeActionLabel="Sign In"
-        android:imeOptions="actionDone" />
+        android:imeOptions="actionDone"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -39,7 +51,7 @@
             android:id="@+id/button_signupSignin"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Sign Up"
+            android:text="@string/Signup"
             android:layout_weight="1"
             android:onClick="registerOnClick"/>
         <Space
@@ -49,7 +61,7 @@
             android:id="@+id/button_signinSignin"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Sign In"
+            android:text="@string/Signin"
             android:layout_weight="1"
             android:onClick="loginOnClick"/>
     </LinearLayout>

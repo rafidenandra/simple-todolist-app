@@ -4,4 +4,6 @@
     <color name="colorSecondary">#84A9FF</color>
     <color name="colorAccent">#D6E4FF</color>
     <color name="colorWhite">#FFFFFF</color>
+    <color name="colorBlack">#000000</color>
+    <color name="colorBlack2">#3C3C3C</color>
 </resources>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,39 +10,51 @@
     android:orientation="vertical"
     tools:context=".Register.RegisterActivity">
 
-    <EditText
-        android:id="@+id/et_emailSignup"
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Username"
+        android:text="@string/Register"
+        android:textSize="28sp"
+        android:textColor="@color/colorBlack2"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_marginBottom="56dp"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:hint="@string/Username"
         android:inputType="textEmailAddress"
         android:maxLines="1"
         android:singleLine="true"
-        android:imeOptions="actionNext"/>
+        android:imeOptions="actionNext"
+        android:id="@+id/et_emailSignup"/>
     <EditText
-        android:id="@+id/et_passwordSignup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Password"
+        android:layout_marginBottom="16dp"
+        android:hint="@string/Password"
         android:inputType="textPassword"
         android:maxLines="1"
         android:singleLine="true"
-        android:imeOptions="actionNext"/>
+        android:imeOptions="actionNext"
+        android:id="@+id/et_passwordSignup"/>
     <EditText
-        android:id="@+id/et_passwordSignup2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="30dp"
-        android:hint="Confirm Password"
+        android:layout_marginBottom="32dp"
+        android:hint="@string/Confirm"
         android:inputType="textPassword"
         android:maxLines="1"
         android:singleLine="true"
         android:imeActionLabel="Sign Up"
-        android:imeOptions="actionDone" />
+        android:imeOptions="actionDone"
+        android:id="@+id/et_passwordSignup2"/>
     <Button
-        android:id="@+id/button_signupSignup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Sign Up" />
+        android:text="@string/Signup"
+        android:id="@+id/button_signupSignup"/>
 
 </LinearLayout>
