@@ -6,6 +6,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
+import com.example.todoapp.Preferences.Preferences;
 
 
 public class RegisterActivity extends AppCompatActivity {
