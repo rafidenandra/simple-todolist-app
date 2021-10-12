@@ -33,7 +33,8 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.MyViewHolder> 
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.task_layout, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.task_layout,
+                parent, false);
         return new MyViewHolder(v);
     }
 
