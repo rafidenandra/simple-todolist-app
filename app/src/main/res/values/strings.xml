@@ -1,12 +1,15 @@
 <resources>
-    <string name="app_name">My Todo App</string>
+    <string name="app_name">Todo List App</string>
     <string name="Login">Login</string>
     <string name="Register">Register</string>
     <string name="Signin">Sign In</string>
     <string name="Signup">Sign Up</string>
     <string name="Username">Username</string>
+    <string name="Email">Email</string>
     <string name="Password">Password</string>
     <string name="Confirm">Confirm Password</string>
     <string name="NewTask">Enter new task...</string>
     <string name="Save">Save</string>
+    <string name="back2login">Back to Login</string>
+    <string name="logout">Logout</string>
 </resources>

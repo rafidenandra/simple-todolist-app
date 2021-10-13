@@ -16,8 +16,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.todoapp.Model.ToDoModel;
-import com.example.todoapp.Utils.DataBaseHelper;
+import com.example.todoapp.Utils.Session;
+import com.example.todoapp.Utils.TaskDBHelper;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
+
 
 public class AddNewTask extends BottomSheetDialogFragment {
     public static final String TAG = "AddNewTask";
@@ -25,10 +27,18 @@ public class AddNewTask extends BottomSheetDialogFragment {
     private EditText mEditText;
     private Button mSaveButton;
     
-    private DataBaseHelper myDB;
+    private TaskDBHelper myDB;
+    int users_id;
+    Session session;
 
     public static AddNewTask newInstance() {
         return new AddNewTask();
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        session = new Session(getActivity().getApplicationContext());
     }
 
     @Nullable
@@ -46,7 +56,7 @@ public class AddNewTask extends BottomSheetDialogFragment {
         mEditText = view.findViewById(R.id.edittext);
         mSaveButton = view.findViewById(R.id.button_save);
 
-        myDB = new DataBaseHelper(getActivity());
+        myDB = new TaskDBHelper(getActivity());
 
         boolean isUpdate = false;
 
@@ -89,6 +99,7 @@ public class AddNewTask extends BottomSheetDialogFragment {
         mSaveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                users_id = session.prefs.getInt("user", 0);
                 String text = mEditText.getText().toString();
 
                 if (finalIsUpdate) {
@@ -97,6 +108,8 @@ public class AddNewTask extends BottomSheetDialogFragment {
                     ToDoModel item = new ToDoModel();
                     item.setTask(text);
                     item.setStatus(0);
+                    item.setUser_id(users_id);
+//                    item.setEmail(new Session(getContext()).getEmail());
                     myDB.insertTask(item);
                 }
                 dismiss();

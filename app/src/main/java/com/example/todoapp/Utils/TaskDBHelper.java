@@ -13,24 +13,33 @@ import com.example.todoapp.Model.ToDoModel;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DataBaseHelper extends SQLiteOpenHelper {
+
+public class TaskDBHelper extends SQLiteOpenHelper {
 
     private SQLiteDatabase db;
-
+    private static final int VERSION = 5;
     private static final String DATABASE_NAME = "TODO_DATABASE";
-    private static final String TABLE_NAME = "TODO_TABLE";
-    private static final String COL_1 = "ID";
+    private static final String TABLE_NAME = "TODOLIST_TABLE";
+    private static final String COLUMN_ID = "ID";
     private static final String COL_2 = "TASK";
     private static final String COL_3 = "STATUS";
+    private static final String COL_4 = "USER_ID";
+//    private static final String COL_4 = "EMAIL";
 
-    public DataBaseHelper(@Nullable Context context) {
-        super(context, DATABASE_NAME, null, 1);
+    public TaskDBHelper(@Nullable Context context) {
+        super(context, DATABASE_NAME,
+                null, VERSION);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE IF NOT EXISTS " + TABLE_NAME +
-                "(ID INTEGER PRIMARY KEY AUTOINCREMENT, TASK TEXT, STATUS INTEGER)");
+        final String CREATE_TODO_TABLE = "CREATE TABLE " + TABLE_NAME + "(" + COLUMN_ID +
+                " INTEGER PRIMARY KEY AUTOINCREMENT, " + COL_2 + " TEXT, " + COL_3 + " INTEGER, " +
+                COL_4 + " INTEGER, FOREIGN KEY " + " (" + COL_4 + ") " + "REFERENCES " +
+                TABLE_NAME + " (" + COLUMN_ID + "));";
+//        db.execSQL("CREATE TABLE IF NOT EXISTS " + TABLE_NAME +
+//                "(ID INTEGER PRIMARY KEY AUTOINCREMENT, TASK TEXT, STATUS INTEGER)");
+        db.execSQL(CREATE_TODO_TABLE);
     }
 
     @Override
@@ -44,6 +53,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(COL_2, model.getTask());
         values.put(COL_3, 0);
+//        values.put(COL_4, model.getEmail());
+        values.put(COL_4, model.getUser_id());
         db.insert(TABLE_NAME, null, values);
     }
 
@@ -66,22 +77,25 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         db.delete(TABLE_NAME, "ID=?", new String[]{String.valueOf(id)});
     }
 
-    public List<ToDoModel> getAllTask() {
+    public List<ToDoModel> getAllTask(int user_id) {
+        List<ToDoModel> modelList = new ArrayList<>();
         db = this.getWritableDatabase();
         Cursor cursor = null;
-        List<ToDoModel> modelList = new ArrayList<>();
+        String sql = "SELECT * FROM " + TABLE_NAME + " WHERE " + COL_4 + "=" + user_id;
 
         db.beginTransaction();
 
         try {
-            cursor = db.query(TABLE_NAME, null, null, null, null,
-                    null, null);
+//            String sql = "SELECT * FROM " + TABLE_NAME + " WHERE " + COL_4 + " = " + email;
+//            cursor = db.query(TABLE_NAME, null, null, null, null,
+//                    null, null);
+            cursor = db.rawQuery(sql, null);
 
             if (cursor != null) {
                 if (cursor.moveToFirst()) {
                     do {
                         ToDoModel task = new ToDoModel();
-                        task.setId(cursor.getInt(cursor.getColumnIndex(COL_1)));
+                        task.setId(cursor.getInt(cursor.getColumnIndex(COLUMN_ID)));
                         task.setTask(cursor.getString(cursor.getColumnIndex(COL_2)));
                         task.setStatus(cursor.getInt(cursor.getColumnIndex(COL_3)));
 

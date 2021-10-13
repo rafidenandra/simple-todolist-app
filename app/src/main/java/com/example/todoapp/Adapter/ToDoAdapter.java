@@ -7,25 +7,23 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.todoapp.AddNewTask;
 import com.example.todoapp.MainActivity;
 import com.example.todoapp.Model.ToDoModel;
 import com.example.todoapp.R;
-import com.example.todoapp.Utils.DataBaseHelper;
-
+import com.example.todoapp.Utils.TaskDBHelper;
 import java.util.List;
+
 
 public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.MyViewHolder> {
 
     private List<ToDoModel> mList;
     private MainActivity activity;
-    private DataBaseHelper myDB;
+    private TaskDBHelper myDB;
 
-    public ToDoAdapter(DataBaseHelper myDB, MainActivity activity) {
+    public ToDoAdapter(TaskDBHelper myDB, MainActivity activity) {
         this.activity = activity;
         this.myDB = myDB;
     }

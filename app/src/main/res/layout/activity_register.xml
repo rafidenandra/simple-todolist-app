@@ -1,60 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
-    android:padding="16dp"
     android:orientation="vertical"
+    android:gravity="center"
     tools:context=".Register.RegisterActivity">
 
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/Register"
-        android:textSize="28sp"
-        android:textColor="@color/colorBlack2"
+        android:textSize="30sp"
         android:textStyle="bold"
-        android:gravity="center"
-        android:layout_marginBottom="56dp"/>
+        android:layout_marginBottom="72dp"
+        android:textColor="@color/colorBlack2"/>
 
     <EditText
+        android:id="@+id/etEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:hint="@string/Username"
         android:inputType="textEmailAddress"
-        android:maxLines="1"
         android:singleLine="true"
-        android:imeOptions="actionNext"
-        android:id="@+id/et_emailSignup"/>
+        android:hint="@string/Email"
+        android:textColorHint="@color/silver"
+        android:layout_marginHorizontal="16dp"
+        android:padding="16dp"/>
+
     <EditText
+        android:id="@+id/etPass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
+        android:inputType="textPassword"
         android:hint="@string/Password"
-        android:inputType="textPassword"
-        android:maxLines="1"
+        android:textColorHint="@color/silver"
         android:singleLine="true"
-        android:imeOptions="actionNext"
-        android:id="@+id/et_passwordSignup"/>
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
-        android:hint="@string/Confirm"
-        android:inputType="textPassword"
-        android:maxLines="1"
-        android:singleLine="true"
-        android:imeActionLabel="Sign Up"
-        android:imeOptions="actionDone"
-        android:id="@+id/et_passwordSignup2"/>
+        android:layout_marginTop="16dp"
+        android:layout_marginHorizontal="16dp"
+        android:padding="16dp"/>
+
     <Button
+        android:id="@+id/btnReg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/colorPrimary"
+        android:text="@string/Register"
+        android:layout_marginTop="56dp"
+        android:layout_marginHorizontal="16dp"
+        android:onClick="registerOnClick"/>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/Signup"
-        android:id="@+id/button_signupSignup"/>
+        android:gravity="center"
+        android:layout_marginTop="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Have an account?"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="@color/silver"/>
+
+        <TextView
+            android:id="@+id/tvLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Login"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimary"
+            android:layout_marginStart="4dp"
+            android:onClick="backToLoginOnClick"/>
+
+    </LinearLayout>
+
 
 </LinearLayout>
