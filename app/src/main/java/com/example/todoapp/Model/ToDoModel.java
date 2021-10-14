@@ -4,14 +4,14 @@ public class ToDoModel {
     private String task;
     private int id;
     private int status;
-    private int user_id;
+    private int userID;
 
-    public int getUser_id() {
-        return user_id;
+    public int getUserID() {
+        return userID;
     }
 
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
+    public void setUserID(int userID) {
+        this.userID = userID;
     }
 
     public String getTask() {

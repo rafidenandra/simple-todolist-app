@@ -11,10 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-
 import com.example.todoapp.Model.ToDoModel;
 import com.example.todoapp.Utils.Session;
 import com.example.todoapp.Utils.TaskDBHelper;
@@ -23,12 +21,10 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 public class AddNewTask extends BottomSheetDialogFragment {
     public static final String TAG = "AddNewTask";
-
     private EditText mEditText;
     private Button mSaveButton;
-    
     private TaskDBHelper myDB;
-    int users_id;
+    int userId;
     Session session;
 
     public static AddNewTask newInstance() {
@@ -45,8 +41,9 @@ public class AddNewTask extends BottomSheetDialogFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.add_newtask, container, false);
-        return v;
+        View view = inflater.inflate(R.layout.add_newtask, container, false);
+
+        return view;
     }
 
     @Override
@@ -55,11 +52,8 @@ public class AddNewTask extends BottomSheetDialogFragment {
 
         mEditText = view.findViewById(R.id.edittext);
         mSaveButton = view.findViewById(R.id.button_save);
-
         myDB = new TaskDBHelper(getActivity());
-
         boolean isUpdate = false;
-
         Bundle bundle = getArguments();
 
         if (bundle != null) {
@@ -96,10 +90,11 @@ public class AddNewTask extends BottomSheetDialogFragment {
         });
 
         boolean finalIsUpdate = isUpdate;
+
         mSaveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                users_id = session.prefs.getInt("user", 0);
+                userId = session.prefs.getInt("user", 0);
                 String text = mEditText.getText().toString();
 
                 if (finalIsUpdate) {
@@ -108,10 +103,10 @@ public class AddNewTask extends BottomSheetDialogFragment {
                     ToDoModel item = new ToDoModel();
                     item.setTask(text);
                     item.setStatus(0);
-                    item.setUser_id(users_id);
-//                    item.setEmail(new Session(getContext()).getEmail());
+                    item.setUserID(userId);
                     myDB.insertTask(item);
                 }
+
                 dismiss();
             }
         });

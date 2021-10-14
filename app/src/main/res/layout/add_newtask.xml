@@ -10,8 +10,10 @@
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
         android:hint="@string/NewTask"
+        android:autofillHints="Enter Task"
+        android:inputType="text"
         android:id="@+id/edittext"/>
-    
+
     <Button
         android:layout_width="88dp"
         android:layout_height="wrap_content"

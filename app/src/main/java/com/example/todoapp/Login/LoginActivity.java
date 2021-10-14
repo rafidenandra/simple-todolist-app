@@ -14,8 +14,9 @@ import com.example.todoapp.Utils.UserDBHelper;
 
 
 public class LoginActivity extends AppCompatActivity {
-    private EditText etEmail, etPass;
-    private UserDBHelper db;
+    private EditText inputEmail;
+    private EditText inputPassword;
+    private UserDBHelper userDB;
     private Session session;
 
     @Override
@@ -23,33 +24,38 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        db = new UserDBHelper(this);
+        userDB = new UserDBHelper(this);
         session = new Session(this);
-        etEmail = (EditText) findViewById(R.id.etEmail);
-        etPass = (EditText) findViewById(R.id.etPass);
+        inputEmail = (EditText) findViewById(R.id.etEmail);
+        inputPassword = (EditText) findViewById(R.id.etPass);
 
         if (session.loggedin()) {
-            startActivity(new Intent(LoginActivity.this, MainActivity.class));
-            finish();
+            moveToMain();
         }
     }
 
-    public void loginOnClick(View view) {
-        String email = etEmail.getText().toString();
-        String pass = etPass.getText().toString();
-        int user_id = db.getIdUser(email, pass);
+    public void moveToMain() {
+        startActivity(new Intent(LoginActivity.this, MainActivity.class));
+        finish();
+    }
 
-        if (db.checkUser(email, pass)) {
-//        if (user_id) {
+    public void displayToast(String message) {
+        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+    }
+
+    public void loginOnClick(View view) {
+        String email = inputEmail.getText().toString();
+        String pass = inputPassword.getText().toString();
+        int userId = userDB.getIdUser(email, pass);
+
+        if (userDB.checkUser(email, pass)) {
             session.setLoggedin(true);
-            session.editor.putInt("user", user_id);
+            session.editor.putInt("user", userId);
             session.editor.apply();
-//            session.setEmail(email);
-            startActivity(new Intent(LoginActivity.this, MainActivity.class));
-            finish();
+
+            moveToMain();
         } else {
-            Toast.makeText(getApplicationContext(), "Wrong email/password",
-                    Toast.LENGTH_SHORT).show();
+            displayToast("Wrong email/password");
         }
     }
 

@@ -18,22 +18,22 @@ import java.util.List;
 
 
 public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.MyViewHolder> {
-
     private List<ToDoModel> mList;
-    private MainActivity activity;
-    private TaskDBHelper myDB;
+    private MainActivity mainActivity;
+    private TaskDBHelper taskDB;
 
-    public ToDoAdapter(TaskDBHelper myDB, MainActivity activity) {
-        this.activity = activity;
-        this.myDB = myDB;
+    public ToDoAdapter(TaskDBHelper taskDB, MainActivity mainActivity) {
+        this.mainActivity = mainActivity;
+        this.taskDB = taskDB;
     }
 
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.task_layout,
-                parent, false);
-        return new MyViewHolder(v);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.task_layout,
+                                                                     parent, false);
+
+        return new MyViewHolder(view);
     }
 
     @Override
@@ -45,9 +45,9 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.MyViewHolder> 
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
                 if (isChecked) {
-                    myDB.updateStatus(item.getId(), 1);
+                    taskDB.updateStatus(item.getId(), 1);
                 } else {
-                    myDB.updateStatus(item.getId(), 0);
+                    taskDB.updateStatus(item.getId(), 0);
                 }
             }
         });
@@ -58,7 +58,7 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.MyViewHolder> 
     }
 
     public Context getContext() {
-        return activity;
+        return mainActivity;
     }
 
     public void setTasks(List<ToDoModel> mList) {
@@ -68,21 +68,19 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.MyViewHolder> 
 
     public void deleteTask(int position) {
         ToDoModel item = mList.get(position);
-        myDB.deleteTask(item.getId());
+        taskDB.deleteTask(item.getId());
         mList.remove(position);
         notifyItemRemoved(position);
     }
 
     public void editItem(int position) {
         ToDoModel item = mList.get(position);
-
         Bundle bundle = new Bundle();
         bundle.putInt("id", item.getId());
         bundle.putString("task", item.getTask());
-
         AddNewTask task = new AddNewTask();
         task.setArguments(bundle);
-        task.show(activity.getSupportFragmentManager(), task.getTag());
+        task.show(mainActivity.getSupportFragmentManager(), task.getTag());
     }
 
     @Override
