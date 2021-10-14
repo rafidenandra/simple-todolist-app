@@ -1,6 +1,5 @@
 package com.example.todoapp;
 
-import android.content.DialogInterface;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import androidx.annotation.NonNull;
@@ -35,19 +34,11 @@ public class RecyclerViewTouchHelper extends ItemTouchHelper.SimpleCallback {
             AlertDialog.Builder builder = new AlertDialog.Builder(adapter.getContext());
             builder.setTitle("Delete Task");
             builder.setMessage("Are you sure?");
-            builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-                    adapter.deleteTask(position);
-                }
-            });
+            builder.setPositiveButton("Yes",
+                                      (dialogInterface, i) -> adapter.deleteTask(position));
 
-            builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-                    adapter.notifyItemChanged(position);
-                }
-            });
+            builder.setNegativeButton("Cancel",
+                                      (dialogInterface, i) -> adapter.notifyItemChanged(position));
 
             AlertDialog dialog = builder.create();
             dialog.show();

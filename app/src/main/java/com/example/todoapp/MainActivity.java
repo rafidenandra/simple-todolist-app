@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity implements OnDialogCloseList
             logout();
         }
 
-        mRecyclerView = findViewById(R.id.recyclerview);
+        mRecyclerView = findViewById(R.id.recyclerView);
         fab = findViewById(R.id.fab);
         userId = session.prefs.getInt("user", 0);
 
@@ -54,9 +54,8 @@ public class MainActivity extends AppCompatActivity implements OnDialogCloseList
         Collections.reverse(mList);
         adapter.setTasks(mList);
 
-        fab.setOnClickListener((v) -> {
-                AddNewTask.newInstance().show(getSupportFragmentManager(), AddNewTask.TAG);
-        });
+        fab.setOnClickListener((v) -> AddNewTask.newInstance().show(getSupportFragmentManager(),
+                AddNewTask.TAG));
 
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new RecyclerViewTouchHelper(adapter));
         itemTouchHelper.attachToRecyclerView(mRecyclerView);

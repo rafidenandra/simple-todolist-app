@@ -41,17 +41,15 @@ public class AddNewTask extends BottomSheetDialogFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.add_newtask, container, false);
-
-        return view;
+        return inflater.inflate(R.layout.add_newtask, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        mEditText = view.findViewById(R.id.edittext);
-        mSaveButton = view.findViewById(R.id.button_save);
+        mEditText = view.findViewById(R.id.inputText);
+        mSaveButton = view.findViewById(R.id.saveBtn);
         myDB = new TaskDBHelper(getActivity());
         boolean isUpdate = false;
         Bundle bundle = getArguments();
@@ -91,24 +89,21 @@ public class AddNewTask extends BottomSheetDialogFragment {
 
         boolean finalIsUpdate = isUpdate;
 
-        mSaveButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                userId = session.prefs.getInt("user", 0);
-                String text = mEditText.getText().toString();
+        mSaveButton.setOnClickListener(view1 -> {
+            userId = session.prefs.getInt("user", 0);
+            String text = mEditText.getText().toString();
 
-                if (finalIsUpdate) {
-                    myDB.updateTask(bundle.getInt("id"), text);
-                } else {
-                    ToDoModel item = new ToDoModel();
-                    item.setTask(text);
-                    item.setStatus(0);
-                    item.setUserID(userId);
-                    myDB.insertTask(item);
-                }
-
-                dismiss();
+            if (finalIsUpdate) {
+                myDB.updateTask(bundle.getInt("id"), text);
+            } else {
+                ToDoModel item = new ToDoModel();
+                item.setTask(text);
+                item.setStatus(0);
+                item.setUserID(userId);
+                myDB.insertTask(item);
             }
+
+            dismiss();
         });
     }
 

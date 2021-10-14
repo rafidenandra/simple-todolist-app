@@ -20,7 +20,7 @@
             android:buttonTint="@color/colorPrimary"
             android:text="@string/Task"
             android:paddingHorizontal="8dp"
-            android:id="@+id/mcheckbox"/>
+            android:id="@+id/mCheckBox"/>
 
     </RelativeLayout>
 

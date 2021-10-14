@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.todoapp.AddNewTask;
@@ -41,14 +40,11 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.MyViewHolder> 
         final ToDoModel item = mList.get(position);
         holder.mCheckBox.setText(item.getTask());
         holder.mCheckBox.setChecked(toBoolean(item.getStatus()));
-        holder.mCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
-                if (isChecked) {
-                    taskDB.updateStatus(item.getId(), 1);
-                } else {
-                    taskDB.updateStatus(item.getId(), 0);
-                }
+        holder.mCheckBox.setOnCheckedChangeListener((compoundButton, isChecked) -> {
+            if (isChecked) {
+                taskDB.updateStatus(item.getId(), 1);
+            } else {
+                taskDB.updateStatus(item.getId(), 0);
             }
         });
     }
@@ -93,7 +89,7 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.MyViewHolder> 
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            mCheckBox = itemView.findViewById(R.id.mcheckbox);
+            mCheckBox = itemView.findViewById(R.id.mCheckBox);
         }
     }
 }

@@ -26,8 +26,8 @@ public class LoginActivity extends AppCompatActivity {
 
         userDB = new UserDBHelper(this);
         session = new Session(this);
-        inputEmail = (EditText) findViewById(R.id.etEmail);
-        inputPassword = (EditText) findViewById(R.id.etPass);
+        inputEmail = findViewById(R.id.inputEmail);
+        inputPassword = findViewById(R.id.inputPassword);
 
         if (session.loggedin()) {
             moveToMain();

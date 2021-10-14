@@ -7,17 +7,17 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:inputType="text"
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
         android:hint="@string/NewTask"
         android:autofillHints="Enter Task"
-        android:inputType="text"
-        android:id="@+id/edittext"/>
+        android:id="@+id/inputText"/>
 
     <Button
         android:layout_width="88dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/edittext"
+        android:layout_below="@id/inputText"
         android:layout_alignParentEnd="true"
         android:text="@string/Save"
         android:textColor="@color/colorWhite"
@@ -25,6 +25,6 @@
         android:padding="4dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
-        android:id="@+id/button_save"/>
+        android:id="@+id/saveBtn"/>
 
 </RelativeLayout>

@@ -30,7 +30,7 @@
                 android:textStyle="bold"
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp"
-                android:id="@+id/title"/>
+                android:id="@+id/navTitle"/>
 
             <ImageButton
                 tools:ignore="RelativeOverlap,UsingOnClickInXml"
@@ -41,7 +41,7 @@
                 app:tint="#fff"
                 android:backgroundTint="@color/colorPrimary"
                 android:onClick="logoutOnClick"
-                android:contentDescription="@string/logout" />
+                android:contentDescription="@string/logout"/>
 
         </RelativeLayout>
 
@@ -52,7 +52,7 @@
         android:layout_height="match_parent"
         android:layout_below="@+id/navbar"
         android:nestedScrollingEnabled="true"
-        android:id="@+id/recyclerview"/>
+        android:id="@+id/recyclerView"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:layout_width="wrap_content"
